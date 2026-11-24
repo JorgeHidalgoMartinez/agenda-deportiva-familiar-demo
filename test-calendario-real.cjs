@@ -1,0 +1,13 @@
+const assert=require('node:assert/strict');
+const {mergeTeamFeed}=require('./calendario-real.js');
+const config={scope:'Competición de prueba; Club Ejemplo',team:'Club Ejemplo'};
+const feed={scope:config.scope,checked_at:new Date().toISOString(),fixtures:[{j:12,date:'2026-11-29',time:'9:10h',rival:'Rival ficticio',home:true,gf:null,gc:null,venue:'Pista ficticia'},{j:13,date:'2026-12-05',time:null,rival:'Otro rival ficticio',home:false,gf:1,gc:0,venue:null}]};
+const db={people:[{id:'p2',sport:'Fútbol',active:true,group:'family'},{id:'p3',sport:'Fútbol',active:true,group:'friends'}],events:[{id:'demo1',person:'p2',source:'Simulación de calendario'},{id:'demo2',person:'p3',source:'Simulación de calendario'}]};
+const a=mergeTeamFeed(db,'p2',feed,config).next;
+assert.equal(a.events.length,3);assert.equal(a.events.filter(e=>e.person==='p2').length,2);assert.equal(a.events.filter(e=>e.person==='p3').length,1);assert.equal(a.events.find(e=>e.person==='p2').time,'09:10');assert.equal(db.events.length,2);
+a.events.find(e=>e.person==='p2').attend='si';
+const b=mergeTeamFeed(a,'p2',{...feed,fixtures:[{...feed.fixtures[0],time:'11:30'},feed.fixtures[1]]},config).next;
+assert.equal(b.events.length,3);assert.equal(b.events.find(e=>e.person==='p2').attend,'si');assert.equal(b.events.find(e=>e.person==='p2').time,'11:30');
+assert.throws(()=>mergeTeamFeed(a,'p2',{...feed,scope:'wrong'},config));assert.throws(()=>mergeTeamFeed(a,'p2',{...feed,fixtures:[feed.fixtures[0],feed.fixtures[0]]},config));assert.throws(()=>mergeTeamFeed(a,'p2',{...feed,fixtures:[{...feed.fixtures[0],date:'2026-02-30'}]},config));
+const c=mergeTeamFeed(b,'p2',{...feed,fixtures:[{...feed.fixtures[0],date:null},feed.fixtures[1]]},config).next;assert.equal(c.events.length,3);assert(c.events.find(e=>e.id.endsWith('-12')).notes.includes('No figura'));
+console.log('OK: deduplicación, actualización, selección, aislamiento por seguimiento, validación y conservación de fechas ausentes');

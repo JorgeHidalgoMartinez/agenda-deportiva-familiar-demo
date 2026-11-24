@@ -6,6 +6,7 @@ function mergeDemoFeed(db,seed,feed,readonly){
   if(typeof t.team!=='string'||typeof t.person!=='string'||!Array.isArray(t.fixtures)||!t.fixtures.length||t.fixtures.length>100)throw Error('Equipo o calendario no válido');
   const p=next.people.find(p=>p.id===t.person&&p.team===t.team&&p.sport==='Fútbol'&&p.active&&(!readonly||p.group==='family'));
   if(!p)continue;
+  if(!readonly&&next.events.some(e=>e.person===p.id&&e.source==='Calendario de equipo'))continue;
   for(const f of t.fixtures){
    if(!Number.isInteger(f.j)||f.j<1||f.j>100||!(/^\d{4}-\d{2}-\d{2}$/.test(f.date))||!Number.isFinite(Date.parse(f.date))||new Date(f.date).toISOString().slice(0,10)!==f.date||(f.time!==null&&!(/^([01]\d|2[0-3]):[0-5]\d$/.test(f.time)))||typeof f.rival!=='string'||!f.rival.trim()||typeof f.home!=='boolean'||(f.venue!==null&&typeof f.venue!=='string'))throw Error('Partido de ejemplo no válido');
    const key=p.id+'-'+f.j;if(seen.has(key))throw Error('Jornada duplicada');seen.add(key);
