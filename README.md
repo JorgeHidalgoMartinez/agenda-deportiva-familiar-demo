@@ -1,4 +1,2 @@
-# Agenda Deportiva — demo v1.1
-Datos completamente ficticios. index.html: vista personal; familia.html: vista familiar de consulta. Los cambios en la vista personal se guardan localmente, no se sincronizan. La demo NO ofrece autenticación ni privacidad de servidor. No introduzcas datos personales reales durante las pruebas.
-
-Publicación: crear un repositorio nuevo dedicado a la demo, subir los archivos en la raíz de main, activar Settings > Pages > Deploy from a branch > main / (root). Verificar ambas páginas desde navegador y devolver las URLs publicadas. No modificar los otros trackers. GitHub Pages puede ser público: no añadir archivos originales, hojas, ni JSON reales.
+# Agenda deportiva demo v1.2 — integración de prueba
+Todos los datos son ficticios. No hay autenticación ni sincronización familiar real. No introducir datos reales. La vista familiar recibe solamente el calendario ficticio familiar. La integración lee el JSON de ejemplo al abrir la página y permite volver a consultar con Actualizar demo; valida antes de aplicar, conserva la asistencia, no duplica jornadas y conserva la copia previa ante fallos. No realiza consultas reales a RFFM. Requiere HTTP/HTTPS. Subir al repositorio demo existente únicamente estos archivos. No modificar otros repositorios.

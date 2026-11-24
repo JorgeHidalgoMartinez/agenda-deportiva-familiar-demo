@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "demo": true,
+  "checked_at": "2026-11-24T18:00:00+01:00",
+  "teams": [
+    {
+      "person": "p2",
+      "legacy": "e2",
+      "team": "Club Azul C",
+      "fixtures": [
+        {
+          "j": 12,
+          "date": "2026-11-28",
+          "time": "10:30",
+          "rival": "Rival ejemplo C",
+          "home": true,
+          "venue": "Campo ficticio Azul",
+          "gf": null,
+          "gc": null
+        },
+        {
+          "j": 13,
+          "date": "2026-12-06",
+          "time": null,
+          "rival": "Rival ejemplo 13 C",
+          "home": false,
+          "venue": null,
+          "gf": null,
+          "gc": null
+        }
+      ]
+    },
+    {
+      "person": "p3",
+      "legacy": "e5",
+      "team": "Club Azul D",
+      "fixtures": [
+        {
+          "j": 12,
+          "date": "2026-11-28",
+          "time": "16:30",
+          "rival": "Rival ejemplo D",
+          "home": true,
+          "venue": "Campo ficticio Azul",
+          "gf": null,
+          "gc": null
+        },
+        {
+          "j": 13,
+          "date": "2026-12-06",
+          "time": null,
+          "rival": "Rival ejemplo 13 D",
+          "home": false,
+          "venue": null,
+          "gf": null,
+          "gc": null
+        }
+      ]
+    },
+    {
+      "person": "p4",
+      "legacy": "e6",
+      "team": "Club Verde A",
+      "fixtures": [
+        {
+          "j": 12,
+          "date": "2026-11-29",
+          "time": "10:00",
+          "rival": "Rival ejemplo A",
+          "home": true,
+          "venue": "Campo ficticio Verde",
+          "gf": null,
+          "gc": null
+        },
+        {
+          "j": 13,
+          "date": "2026-12-05",
+          "time": "11:00",
+          "rival": "Rival ejemplo 13 A",
+          "home": false,
+          "venue": null,
+          "gf": null,
+          "gc": null
+        }
+      ]
+    }
+  ]
+}
